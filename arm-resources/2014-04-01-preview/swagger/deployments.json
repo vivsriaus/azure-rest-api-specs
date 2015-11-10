@@ -591,6 +591,88 @@
 				"message"
 			]
 		},
+		"Provider": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Gets or sets the provider id."
+        },
+        "namespace": {
+          "type": "string",
+          "description": "Gets or sets the namespace of the provider."
+        },
+        "registrationState": {
+          "type": "string",
+          "description": "Gets or sets the registration state of the provider."
+        },
+        "resourceTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProviderResourceType"
+          },
+          "description": "Gets or sets the collection of provider resource types."
+        }
+      },
+      "description": "Resource provider information."
+    },
+    "BasicDependency": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Gets or sets the ID of the dependency."
+        },
+        "resourceType": {
+          "type": "string",
+          "description": "Gets or sets the dependency resource type."
+        },
+        "resourceName": {
+          "type": "string",
+          "description": "Gets or sets the dependency resource name."
+        }
+      },
+      "description": "Deployment dependency information."
+    },
+    "Dependency": {
+      "properties": {
+        "dependsOn": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BasicDependency"
+          },
+          "description": "Gets the list of dependencies."
+        },
+        "id": {
+          "type": "string",
+          "description": "Gets or sets the ID of the dependency."
+        },
+        "resourceType": {
+          "type": "string",
+          "description": "Gets or sets the dependency resource type."
+        },
+        "resourceName": {
+          "type": "string",
+          "description": "Gets or sets the dependency resource name."
+        }
+      },
+      "description": "Deployment dependency information."
+    },
+	"TargetResource": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Gets or sets the ID of the resource."
+        },
+        "resourceName": {
+          "type": "string",
+          "description": "Gets or sets the name of the resource."
+        },
+        "resourceType": {
+          "type": "string",
+          "description": "Gets or sets the type of the resource."
+        }
+      },
+      "description": "Target resource."
+    },
 		"DeploymentPropertiesExtended": 
 		{
 			"properties": 
