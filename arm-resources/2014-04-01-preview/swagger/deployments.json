@@ -656,6 +656,36 @@
       },
       "description": "Deployment dependency information."
     },
+	"ProviderResourceType": {
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "description": "Gets or sets the resource type."
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Gets or sets the collection of locations where this resource type can be created in."
+        },
+        "apiVersions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Gets or sets the api version."
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Gets or sets the properties."
+        }
+      },
+      "description": "Resource type managed by the resource provider."
+    },
 	"TargetResource": {
       "properties": {
         "id": {
