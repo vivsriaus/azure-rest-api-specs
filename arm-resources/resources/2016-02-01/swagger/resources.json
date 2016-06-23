@@ -1575,6 +1575,7 @@
         "mode": {
           "type": "string",
           "description": "Gets or sets the deployment mode.",
+          "default": "Incremental",
           "enum": [
             "Incremental",
             "Complete"
@@ -2307,18 +2308,6 @@
           "readOnly": true,
           "type": "string",
           "description": "Resource type"
-        },
-        "createdTime": {
-          "readOnly": true,
-          "type": "string",
-          "format": "date-time",
-          "description": "Created time of the resource."
-        },
-        "changedTime": {
-          "readOnly": true,
-          "type": "string",
-          "format": "date-time",
-          "description": "Changed time of the resource."
         },
         "location": {
           "type": "string",
