@@ -201,8 +201,8 @@
           "nextLinkName": "nextLink"
         }
       }
-    },  
-     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/policyassignments": {
+    },
+    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/policyassignments": {
       "get": {
         "tags": [
           "PolicyAssignments"
@@ -551,6 +551,12 @@
             "schema": {
               "$ref": "#/definitions/PolicySetDefinition"
             }
+          },
+          "200": {
+            "description": "OK - Returns information about the policy set definition.",
+            "schema": {
+              "$ref": "#/definitions/PolicySetDefinition"
+            }
           }
         }
       },
@@ -639,7 +645,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK - Returns ana array of policy set definitions.",
+            "description": "OK - Returns an array of policy set definitions.",
             "schema": {
               "$ref": "#/definitions/PolicySetDefinitionListResult"
             }
@@ -704,6 +710,53 @@
             "modelAsString": true
           }
         },
+        "mode": {
+          "type": "string",
+          "description": "The policy definition mode. Possible values are NotSpecified, Indexed, and All.",
+          "enum": [
+            "NotSpecified",
+            "Indexed",
+            "All"
+          ],
+          "x-ms-enum": {
+            "name": "policyMode",
+            "modelAsString": true
+          }
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The display name of the policy definition."
+        },
+        "description": {
+          "type": "string",
+          "description": "The policy definition description."
+        },
+        "policyRule": {
+          "type": "object",
+          "description": "The policy rule."
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Required if a parameter is used in policy rule."
+        }
+      },
+      "description": "The policy definition properties."
+    },
+    "PolicySetDefinitionProperties": {
+      "properties": {
+        "policyType": {
+          "type": "string",
+          "description": "The type of policy definition. Possible values are NotSpecified, BuiltIn, and Custom.",
+          "enum": [
+            "NotSpecified",
+            "BuiltIn",
+            "Custom"
+          ],
+          "x-ms-enum": {
+            "name": "policyType",
+            "modelAsString": true
+          }
+        },
         "displayName": {
           "type": "string",
           "description": "The display name of the policy definition."
@@ -728,10 +781,13 @@
           "description": "An array of policy definition references."
         }
       },
-      "description": "The policy definition properties."
+      "required": [
+        "policyDefinitions"
+      ],
+      "description": "The policy set definition properties."
     },
     "PolicyDefinitionReference": {
-      "preoperties": {
+      "properties": {
         "policyDefinitionId": {
           "type": "string",
           "description": "The ID of the policy definition."
@@ -740,7 +796,8 @@
           "type": "object",
           "description": "Required if a parameter is used in policy rule."
         }
-      }
+      },
+      "description": "The policy definition reference."
     },
     "PolicyDefinition": {
       "properties": {
@@ -826,11 +883,18 @@
           "type": "string",
           "description": "The scope for the policy assignment."
         },
+        "notScopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The policy's excluded scopes."
+        },
         "parameters": {
           "type": "object",
           "description": "Required if a parameter is used in policy rule."
         },
-        "description":{
+        "description": {
           "type": "string",
           "description": "This message will be part of response in case of policy violation."
         }
